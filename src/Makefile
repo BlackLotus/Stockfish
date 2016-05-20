@@ -145,7 +145,10 @@ endif
 ifeq ($(COMP),gcc)
 	comp=gcc
 	CXX=g++
-	CXXFLAGS += -pedantic -Wextra -Wshadow -m$(bits)
+	CXXFLAGS += -pedantic -Wextra -Wshadow -pthread
+	ifneq ($(ARCH),armv7)
+		CXXFLAGS += -m$(bits)
+	endif
 	ifneq ($(UNAME),Darwin)
 	   LDFLAGS += -Wl,--no-as-needed
 	endif
@@ -185,7 +188,10 @@ endif
 ifeq ($(COMP),clang)
 	comp=clang
 	CXX=clang++
-	CXXFLAGS += -pedantic -Wextra -Wshadow -m$(bits)
+	CXXFLAGS += -pedantic -Wextra -Wshadow
+	ifneq ($(ARCH),armv7)
+		CXXFLAGS += -m$(bits)
+	endif
 	LDFLAGS += -m$(bits)
 	ifeq ($(UNAME),Darwin)
 		CXXFLAGS += -stdlib=libc++
