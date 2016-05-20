@@ -261,7 +261,7 @@ ifeq ($(optimize),yes)
 		endif
 
 		ifeq ($(arch),armv7)
-			CXXFLAGS += -fno-gcse -mthumb -march=armv7-a -mfloat-abi=softfp
+			CXXFLAGS += -fno-gcse -mthumb -march=armv7-a
 		endif
 	endif
 
